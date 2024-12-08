@@ -89,3 +89,15 @@ func (h *handlerStruct) GetChunks(ctx *app.Context) (interface{}, error) {
 
 	return chunksArr, nil
 }
+
+func (h *handlerStruct) DeleteFile(ctx *app.Context) (interface{}, error) {
+	fileID := ctx.PathParam(constants.FILE_ID)
+
+	err := h.store.RemoveFile(ctx, fileID)
+	if err != nil {
+		log.Error(err.Error())
+		return nil, err
+	}
+
+	return nil, nil
+}

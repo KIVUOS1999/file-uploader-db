@@ -31,5 +31,7 @@ func main() {
 	app.Get("/files/{user-id}", h.GetFileByUser)
 	app.Get("/chunks/{file-id}", h.GetChunks)
 
+	app.Delete("/file/{file-id}", h.DeleteFile)
+
 	app.Start()
 }
