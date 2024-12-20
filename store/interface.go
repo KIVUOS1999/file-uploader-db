@@ -14,4 +14,7 @@ type IStore interface {
 	GetChunksByOrder(ctx *app.Context, fileID string) ([]models.FileChunkStructure, error)
 
 	RemoveFile(ctx *app.Context, fileID string) error
+
+	AddUser(ctx *app.Context, userData *models.Users) error
+	GetUser(ctx *app.Context, userID string) (*models.Users, error)
 }

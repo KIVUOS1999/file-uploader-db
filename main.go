@@ -27,9 +27,11 @@ func main() {
 
 	app.Post("/upload_file", h.UploadFile)
 	app.Post("/upload_chunks", h.UploadChunksData)
+	app.Post("/user", h.AddUser)
 
 	app.Get("/files/{user-id}", h.GetFileByUser)
 	app.Get("/chunks/{file-id}", h.GetChunks)
+	app.Get("/user/{user-id}", h.GetUser)
 
 	app.Delete("/file/{file-id}", h.DeleteFile)
 

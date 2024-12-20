@@ -17,6 +17,7 @@ func (s *storeStruct) UploadFile(ctx *app.Context, fileDetails *models.FileDetai
 		fileDetails.Meta.Name,
 		fileDetails.Meta.Size,
 		fileDetails.TotalChunks,
+		fileDetails.UserID,
 		time,
 	)
 
@@ -24,6 +25,8 @@ func (s *storeStruct) UploadFile(ctx *app.Context, fileDetails *models.FileDetai
 		log.Errorf("upload_file exec: %v - %+v", fileDetails.ID, err.Error())
 		return err
 	}
+
+	log.Info("upload file success", fileDetails.ID)
 
 	return nil
 }

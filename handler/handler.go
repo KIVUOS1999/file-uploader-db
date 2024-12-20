@@ -26,9 +26,18 @@ func (h *handlerStruct) UploadFile(ctx *app.Context) (interface{}, error) {
 
 	err := ctx.Bind(&fileDetails)
 	if err != nil {
+		log.Error(err.Error())
 		return nil, &easyError.CustomError{
 			StatusCode: http.StatusBadRequest,
 			Response:   err.Error(),
+		}
+	}
+
+	if fileDetails.UserID == "" {
+		log.Error("user-id blank")
+		return nil, &easyError.CustomError{
+			StatusCode: http.StatusBadRequest,
+			Response:   "user-id cannot be blank",
 		}
 	}
 
@@ -100,4 +109,33 @@ func (h *handlerStruct) DeleteFile(ctx *app.Context) (interface{}, error) {
 	}
 
 	return nil, nil
+}
+
+func (h *handlerStruct) AddUser(ctx *app.Context) (interface{}, error) {
+	userDetails := models.Users{}
+	if err := ctx.Bind(&userDetails); err != nil {
+		return nil, err
+	}
+
+	err := h.store.AddUser(ctx, &userDetails)
+	if err != nil {
+		log.Error(err.Error())
+		return nil, err
+	}
+
+	return nil, nil
+}
+
+func (h *handlerStruct) GetUser(ctx *app.Context) (interface{}, error) {
+	userID := ctx.PathParam(constants.USER_ID)
+	if userID == "" {
+		return nil, &easyError.CustomError{
+			StatusCode: http.StatusBadRequest,
+			Response:   "user id is blank",
+		}
+	}
+
+	log.Info("searching for user", userID)
+
+	return h.store.GetUser(ctx, userID)
 }

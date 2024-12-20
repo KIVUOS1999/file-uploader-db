@@ -40,7 +40,7 @@ func (s *storeStruct) GetFileDetails(ctx *app.Context, fileID string) (*models.F
 }
 
 func (s *storeStruct) GetFilesByUser(ctx *app.Context, userID string) ([]models.FileDetailStructure, error) {
-	rows, err := s.db.Query(FETCH_FILE_PER_USER)
+	rows, err := s.db.Query(FETCH_FILE_PER_USER, userID)
 	if err != nil {
 		log.Error("query", err.Error())
 		return nil, err

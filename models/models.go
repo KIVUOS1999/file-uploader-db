@@ -20,6 +20,7 @@ type FileDetailStructure struct {
 
 	ID          uuid.UUID `json:"file_id"`
 	TotalChunks int       `json:"total_chunks"`
+	UserID      string    `json:"user_id"`
 	CreatedAt   int64     `json:"created_at"`
 }
 
@@ -28,4 +29,11 @@ type FileChunkStructure struct {
 	FileID   uuid.UUID `json:"file_id"`
 	CheckSum string    `json:"check_sum"`
 	Order    int       `json:"order"`
+}
+
+type Users struct {
+	ID      string `json:"id"`
+	Name    string `json:"name"`
+	Email   string `json:"email"`
+	Picture string `json:"picture"`
 }
