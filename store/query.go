@@ -35,7 +35,7 @@ const (
 	`
 
 	FETCH_USER_BY_ID = `
-		select name,email from users
+		select name,email,alloted_size from users
 		where
 		id=$1
 	`

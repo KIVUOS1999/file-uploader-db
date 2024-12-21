@@ -34,6 +34,7 @@ func (s *storeStruct) GetUser(ctx *app.Context, userID string) (*models.Users, e
 	err := s.db.QueryRow(FETCH_USER_BY_ID, userID).Scan(
 		&user.Name,
 		&user.Email,
+		&user.AllotedSize,
 	)
 	if err != nil {
 		log.Error(err.Error())

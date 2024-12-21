@@ -12,7 +12,7 @@ type DBCredentials struct {
 
 type FileMetaData struct {
 	Name string `json:"name"`
-	Size int64  `json:"file_size"`
+	Size uint64 `json:"file_size"`
 }
 
 type FileDetailStructure struct {
@@ -32,8 +32,9 @@ type FileChunkStructure struct {
 }
 
 type Users struct {
-	ID      string `json:"id"`
-	Name    string `json:"name"`
-	Email   string `json:"email"`
-	Picture string `json:"picture"`
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Email       string `json:"email"`
+	Picture     string `json:"picture"`
+	AllotedSize uint64 `json:"alloted_size"`
 }
