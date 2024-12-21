@@ -20,3 +20,5 @@ create table file_details (
 \c db_name -> connect to a db
 \dt -> show table
 \d table_name -> describe table
+
+goose postgres postgresql://postgres:password@localhost:5432/uploader_file_details up
